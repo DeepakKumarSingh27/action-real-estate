@@ -1,6 +1,13 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Award, Target, Eye, Building2 } from 'lucide-react';
+import { Award, Target, Eye, Building2, Briefcase, Zap, Network } from 'lucide-react';
+
+const subsidiaries = [
+  { name: 'ACTION GROUP HOLDINGS LTD', icon: Network, desc: 'Our esteemed parent organization providing comprehensive strategic guidance and investment backing across multiple sectors.' },
+  { name: 'Action Hotels Company', icon: Briefcase, desc: 'Leading developer and asset manager of branded economy and mid-scale hotels across the Middle East and Australia.' },
+  { name: 'Action Energy Company', icon: Zap, desc: 'Pioneering innovative energy solutions, contracting pipelines, and sustainable resource management.' }
+];
+
 
 const About = () => {
   return (
@@ -95,6 +102,42 @@ const About = () => {
               </p>
             </div>
           </motion.div>
+        </div>
+
+        {/* Subsidiaries */}
+        <div className="mb-24">
+          <div className="text-center mb-12">
+            <motion.h2 
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              viewport={{ once: true }}
+              className="text-3xl font-bold text-gray-900 dark:text-white mb-4"
+            >
+              Our Network & Associated Entities
+            </motion.h2>
+            <div className="w-20 h-1 bg-primary-MAIN mx-auto rounded-full" />
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {subsidiaries.map((sub, idx) => (
+              <motion.div
+                key={idx}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: idx * 0.15 }}
+                className="bg-white dark:bg-gray-900 border border-gray-100 dark:border-gray-800 rounded-2xl p-8 hover:border-primary-MAIN/50 transition-colors group text-center flex flex-col items-center shadow-sm hover:shadow-md"
+              >
+                <div className="w-16 h-16 bg-gray-50 dark:bg-gray-800 rounded-full flex items-center justify-center mb-6 group-hover:bg-primary-50 dark:group-hover:bg-primary-900/40 transition-colors">
+                  <sub.icon className="w-8 h-8 text-primary-MAIN dark:text-primary-500" />
+                </div>
+                <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-3">{sub.name}</h3>
+                <p className="text-gray-600 dark:text-gray-400 text-sm leading-relaxed">
+                  {sub.desc}
+                </p>
+              </motion.div>
+            ))}
+          </div>
         </div>
 
       </div>
