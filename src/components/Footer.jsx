@@ -82,7 +82,7 @@ const Footer = () => {
         </div>
         <div className="max-w-7xl mx-auto mt-12 pt-8 border-t border-gray-200 dark:border-gray-800 flex flex-col md:flex-row justify-between items-center">
           <p className="text-sm text-gray-500 dark:text-gray-400">
-            &copy; {new Date().getFullYear()} Action Real Estate Company K.S.C.C. All rights reserved.
+            &copy; {new Date().getFullYear()} Action Real Estate Company K.S.C.C. All rights reserved. <span className="ml-2 pl-2 border-l border-gray-300 dark:border-gray-700">Developed by <a href="#" className="hover:text-primary-MAIN font-medium transition-colors">Developer</a></span>
           </p>
           <div className="flex space-x-6 mt-4 md:mt-0 text-sm text-gray-500 dark:text-gray-400">
             <a href="#" className="hover:text-gray-900 dark:hover:text-white transition-colors">Privacy Policy</a>

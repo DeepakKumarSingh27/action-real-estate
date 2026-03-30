@@ -15,6 +15,8 @@ const projects = [
     location: 'Kuwait City',
     description: 'A modern mixed-use development featuring premium retail spaces, hypermarkets, and entertainment facilities.',
     image: '/assets/retail_center_1774808471177.png',
+    price: '25.5M',
+    area: '150,000 sq ft',
   },
   {
     id: 2,
@@ -23,6 +25,10 @@ const projects = [
     location: 'Salmiya',
     description: 'Luxury high-rise apartments offering panoramic views of the Arabian Gulf with hotel-like amenities.',
     image: '/assets/skyline_residences_1774808491101.png',
+    price: '850,000',
+    bedrooms: 3,
+    bathrooms: 4,
+    area: '2,100 sq ft',
   },
   {
     id: 3,
@@ -31,6 +37,8 @@ const projects = [
     location: 'Hawally',
     description: 'A contemporary 4-star hotel designed for both business and leisure travelers in mind.',
     image: '/assets/oasis_hotel_1774808507962.png',
+    price: '12.0M',
+    area: '85,000 sq ft',
   }
 ];
 
@@ -83,13 +91,13 @@ const Home = () => {
             <h1 className="text-5xl md:text-7xl font-extrabold text-white tracking-tight mb-6 drop-shadow-lg">
               Building <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary-500 to-accent-MAIN">Future Spaces</span>
             </h1>
-            <p className="mt-4 max-w-2xl text-xl text-gray-200 mx-auto mb-10 font-light">
-              Transforming the landscape of Kuwait and the GCC through innovative development, expert advisory, and premium management since 2004.
+            <p className="mt-4 max-w-2xl text-xl text-gray-200 mx-auto mb-10 font-light drop-shadow-md">
+              Find your perfect home in Kuwait with ease. End-to-end development, expert advisory, and premium management.
             </p>
             <div className="flex justify-center gap-4">
               <Link to="/projects">
-                <Button size="lg" className="rounded-full flex items-center gap-2">
-                  Explore Projects
+                <Button size="lg" className="rounded-full flex items-center gap-2 !bg-blue-600 hover:!bg-blue-700 !text-white border-0 shadow-[0_0_20px_rgba(37,99,235,0.5)] hover:shadow-[0_0_30px_rgba(37,99,235,0.7)] transition-all transform hover:-translate-y-1">
+                  View Properties
                   <ArrowRight size={18} />
                 </Button>
               </Link>
@@ -104,7 +112,7 @@ const Home = () => {
       </section>
 
       {/* Services Section */}
-      <section className="py-24 bg-gray-50 dark:bg-gray-950 transition-colors duration-300">
+      <section className="py-32 bg-gray-50 dark:bg-gray-950 transition-colors duration-300">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <motion.h2 
@@ -133,7 +141,7 @@ const Home = () => {
       </section>
 
       {/* Featured Projects */}
-      <section className="py-24 bg-white dark:bg-gray-900 transition-colors duration-300">
+      <section className="py-32 bg-white dark:bg-gray-900 transition-colors duration-300">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex flex-col md:flex-row justify-between items-end mb-16">
             <div className="max-w-2xl">
@@ -168,7 +176,7 @@ const Home = () => {
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 bg-primary-900 dark:bg-primary-950 relative overflow-hidden">
+      <section className="py-32 bg-primary-900 dark:bg-primary-950 relative overflow-hidden">
         {/* Decorative elements */}
         <div className="absolute top-0 right-0 -translate-y-12 translate-x-1/3 opacity-10 pointer-events-none">
           <svg width="404" height="404" fill="none" viewBox="0 0 404 404" aria-hidden="true">

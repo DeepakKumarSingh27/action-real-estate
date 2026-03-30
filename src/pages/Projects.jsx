@@ -10,6 +10,8 @@ const allProjects = [
     location: 'Kuwait City',
     description: 'A modern mixed-use development featuring premium retail spaces, hypermarkets, and entertainment facilities.',
     image: '/assets/retail_center_1774808471177.png',
+    price: '25.5M',
+    area: '150,000 sq ft',
   },
   {
     id: 2,
@@ -18,6 +20,10 @@ const allProjects = [
     location: 'Salmiya',
     description: 'Luxury high-rise apartments offering panoramic views of the Arabian Gulf with hotel-like amenities.',
     image: '/assets/skyline_residences_1774808491101.png',
+    price: '850,000',
+    bedrooms: 3,
+    bathrooms: 4,
+    area: '2,100 sq ft',
   },
   {
     id: 3,
@@ -26,6 +32,8 @@ const allProjects = [
     location: 'Hawally',
     description: 'A contemporary 4-star hotel designed for both business and leisure travelers in mind.',
     image: '/assets/oasis_hotel_1774808507962.png',
+    price: '12.0M',
+    area: '85,000 sq ft',
   },
   {
     id: 4,
@@ -34,6 +42,8 @@ const allProjects = [
     location: 'Shuwaikh',
     description: 'State-of-the-art corporate office spaces equipped with smart building technology.',
     image: '/assets/corporate_tower_1774808533340.png',
+    price: '30.0M',
+    area: '200,000 sq ft',
   },
   {
     id: 5,
@@ -42,6 +52,10 @@ const allProjects = [
     location: 'Al Khiran',
     description: 'Exclusive beachfront villas featuring modern architecture and private boat moorings.',
     image: '/assets/marina_villas_1774808549897.png',
+    price: '1.2M',
+    bedrooms: 5,
+    bathrooms: 6,
+    area: '4,500 sq ft',
   },
   {
     id: 6,
@@ -50,6 +64,8 @@ const allProjects = [
     location: 'Farwaniya',
     description: 'Extension project bringing 50+ new regional and international retail brands.',
     image: '/assets/grand_mall_1774808570118.png',
+    price: '45.0M',
+    area: '300,000 sq ft',
   }
 ];
 
@@ -57,10 +73,25 @@ const categories = ['All', 'Commercial', 'Residential', 'Hospitality'];
 
 const Projects = () => {
   const [activeCategory, setActiveCategory] = useState('All');
+  const [priceFilter, setPriceFilter] = useState('');
 
-  const filteredProjects = activeCategory === 'All' 
-    ? allProjects 
-    : allProjects.filter(project => project.category === activeCategory);
+  const parsePrice = (priceStr) => {
+    if (!priceStr) return 0;
+    let numeric = parseFloat(priceStr.replace(/,/g, ''));
+    if (priceStr.includes('M')) numeric *= 1000000;
+    return numeric;
+  };
+
+  const filteredProjects = allProjects.filter(project => {
+    const categoryMatch = activeCategory === 'All' || project.category === activeCategory;
+    
+    let priceMatch = true;
+    if (priceFilter === 'under1m') priceMatch = parsePrice(project.price) < 1000000;
+    else if (priceFilter === '1m-5m') priceMatch = parsePrice(project.price) >= 1000000 && parsePrice(project.price) <= 5000000;
+    else if (priceFilter === 'over5m') priceMatch = parsePrice(project.price) > 5000000;
+
+    return categoryMatch && priceMatch;
+  });
 
   return (
     <div className="pt-20 pb-24 bg-gray-50 dark:bg-gray-950 min-h-screen transition-colors duration-300">
@@ -86,20 +117,36 @@ const Projects = () => {
         </div>
 
         {/* Filters */}
-        <div className="flex flex-wrap justify-center gap-3 mb-12">
-          {categories.map((cat) => (
-            <button
-              key={cat}
-              onClick={() => setActiveCategory(cat)}
-              className={`px-6 py-2 rounded-full text-sm font-medium transition-all ${
-                activeCategory === cat
-                  ? 'bg-primary-MAIN text-white shadow-md'
-                  : 'bg-white dark:bg-gray-900 text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 border border-gray-200 dark:border-gray-800'
-              }`}
+        <div className="flex flex-col md:flex-row justify-between items-center bg-white dark:bg-gray-900 p-4 rounded-xl shadow-sm border border-gray-100 dark:border-gray-800 mb-12 gap-4">
+          <div className="flex flex-wrap gap-2">
+            {categories.map((cat) => (
+              <button
+                key={cat}
+                onClick={() => setActiveCategory(cat)}
+                className={`px-4 py-2 rounded-lg text-sm font-medium transition-all ${
+                  activeCategory === cat
+                    ? 'bg-primary-MAIN text-white shadow-md'
+                    : 'bg-gray-50 dark:bg-gray-800 text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700'
+                }`}
+              >
+                {cat}
+              </button>
+            ))}
+          </div>
+
+          <div className="flex items-center w-full md:w-auto">
+            <label className="text-sm text-gray-500 dark:text-gray-400 mr-3 font-medium hidden sm:block">Price Limit:</label>
+            <select 
+              value={priceFilter}
+              onChange={(e) => setPriceFilter(e.target.value)}
+              className="bg-gray-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 text-gray-900 dark:text-gray-300 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full md:w-auto p-2 outline-none transition-colors"
             >
-              {cat}
-            </button>
-          ))}
+              <option value="">Any Price</option>
+              <option value="under1m">Under 1 Million</option>
+              <option value="1m-5m">1M - 5M</option>
+              <option value="over5m">Over 5M</option>
+            </select>
+          </div>
         </div>
 
         {/* Projects Grid */}
