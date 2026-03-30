@@ -19,13 +19,13 @@ const Footer = () => {
               Established in 2004, a subsidiary of Action Group Holdings Company. We specialize in property development, project management, and letting services across Kuwait and the GCC.
             </p>
             <div className="flex space-x-4">
-              <a href="#" className="text-gray-400 hover:text-primary-MAIN transition-colors">
+              <a href="https://www.facebook.com/ARECkwt/" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-primary-MAIN transition-colors">
                 <Facebook size={20} />
               </a>
               <a href="#" className="text-gray-400 hover:text-primary-MAIN transition-colors">
                 <Twitter size={20} />
               </a>
-              <a href="#" className="text-gray-400 hover:text-primary-MAIN transition-colors">
+              <a href="https://www.linkedin.com/company/action-real-estate-co-/posts/?feedView=all" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-primary-MAIN transition-colors">
                 <Linkedin size={20} />
               </a>
               <a href="#" className="text-gray-400 hover:text-primary-MAIN transition-colors">
